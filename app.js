@@ -1,15 +1,13 @@
 const express = require('express')
 const ether = require('./routes/ether')
-require('dotenv').config()
+const bodyParser = require('body-parser')
 const app = express()
+require('dotenv').config()
 
-
+app.use(bodyParser.json())
 
 
 app.use('/',ether)
-
-
-
 
 
 
