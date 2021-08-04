@@ -1,5 +1,6 @@
 const express = require('express')
 const ether = require('./routes/ether')
+const token = require('./routes/token')
 const bodyParser = require('body-parser')
 const app = express()
 require('dotenv').config()

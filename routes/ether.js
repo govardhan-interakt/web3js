@@ -6,12 +6,11 @@ const web3 = new Web3('https://rinkeby.infura.io/v3/6244fc96facd47f5b2cf9bb1c428
 const utils =  require('ethereumjs-util')
 var Wallet = require('ethereumjs-wallet');
 const ethereum_address = require('ethereum-address')
+
 const Tx = require('ethereumjs-tx').Transaction
 
 const abi =[{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_owner","type":"address"},{"indexed":true,"internalType":"address","name":"_spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"_value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"_from","type":"address"},{"indexed":true,"internalType":"address","name":"_to","type":"address"},{"indexed":false,"internalType":"uint256","name":"_value","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"MyToken","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"address","name":"","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_spender","type":"address"},{"internalType":"uint256","name":"_value","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"success","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"standard","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_to","type":"address"},{"internalType":"uint256","name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"success","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"_from","type":"address"},{"internalType":"address","name":"_to","type":"address"},{"internalType":"uint256","name":"_value","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"success","type":"bool"}],"stateMutability":"nonpayable","type":"function"}]
 const contractAddress='0x746D9a7d56A91C85d144b834A0246EeF43b21974'
-
-
 
 //get eth balance
 router.get('/ether/:address',(req,res)=>{
@@ -56,8 +55,6 @@ router.get('/usdt/:address',(req,res)=>{
 
 })
 
-
-
 router.get('/transfer',(req,res)=>{
     const account2 ='0x2E99c6B03534C496a500B53C433CbAa9a70fCb9f'
     const account1 ='0x4d8386D66465380a8684Dd522666E448ccE2cc52'
@@ -94,6 +91,8 @@ web3.eth.sendSignedTransaction(raw,(err,txHash)=>{
 })
 
 })
+
+
 //get block number
 router.get('/block',(req,res)=>{
 web3.eth.getBlock('latest')
@@ -129,7 +128,7 @@ router.get('/gasprice',(req,res)=>{
 router.get('/wallet',(req,res)=>{
 
 
-const EthWallet = Wallet.default.generate();
+const EthWallet = Wallet.default.generate()
 
 res.status(201).json({
     address:  EthWallet.getAddressString(),
@@ -150,6 +149,9 @@ else{
     res.status(500).json('invalid address')
 }
 })
+
+
+
 
 
 
