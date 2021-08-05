@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 
 
 app.use('/',ether)
-
+app.use('/',token)
 
 
 const PORT  =process.env.PORT
