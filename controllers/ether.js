@@ -75,16 +75,18 @@ const serializedTransaction = tx.serialize()
 const raw = '0x' + serializedTransaction.toString('hex')
 
 //broadcast the transaction
-web3.eth.sendSignedTransaction(raw,(err,txHash)=>{
-    if(err){
-        console.log(err)
-    }
-    res.status(201).json({
-        message:"success",
-        txHash:txHash
+web3.eth.sendSignedTransaction(raw)
+    .then(result=>{
+        res.status(201).json({
+            message:"Transaction successful",
+            result:result.transactionHash
+        })
     })
-    console.log('txHash',txHash)
-})
+    .catch(err=>{
+        res.status(500).json({
+        err:err.message
+    })
+    })
 })
 
 }
